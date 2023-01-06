@@ -14,10 +14,12 @@ static struct filetype {
 	{"msg", "letter$|mbox$|mail$"},			/* email */
 	{"mk", "Makefile$|makefile$|\\.mk$"},		/* makefile */
 	{"sh", "\\.sh$"},				/* shell script */
+	{"pl", "\\.(pl|pm)$"},	        		/* perl */
 	{"py", "\\.py$"},				/* python */
 	{"bib", "bib$"},				/* refer */
 	{"nm", "\\.nm$"},				/* neatmail */
 	{"diff", "\\.(patch|diff)$"}			/* diff */
+
 };
 
 /* syntax highlighting patterns */
@@ -83,6 +85,12 @@ static struct highlight {
 	{"bib", {0, 8 | SYN_BD, 7}, "^(%O) (.*)$", 1},
 	{"bib", {0, 8 | SYN_BD, 8 | SYN_BD}, "^(%[A-Z]) (.*)$", 1},
 	{"bib", {25}, "^#.*$", 1},
+
+	/* perl */
+	{"pl", {2}, "#.*$"},
+	{"pl", {5}, "\\<(chomp|chop|chr|crypt|fc|hex|index|lc|lcfirst|length|oct|ord|pack|q|qq|reverse|rindex|sprintf|substr|tr|uc|ucfirst|y|m|pos|qr|quotemeta|s|split|study|abs|atan2|cos|exp|hex|int|log|oct|rand|sin|sqrt|srand|each|keys|pop|push|shift|splice|unshift|values|grep|join|map|qw|reverse|sort|unpack|delete|each|exists|keys|values|binmode|close|closedir|dbmclose|dbmopen|die|eof|fileno|flock|format|getc|print|printf|read|readdir|readline|rewinddir|say|seek|seekdir|select|syscall|sysread|sysseek|syswrite|tell|telldir|truncate|warn|write|pack|read|syscall|sysread|sysseek|syswrite|unpack|vec|chdir|chmod|chown|chroot|fcntl|glob|ioctl|link|lstat|mkdir|open|opendir|readlink|rename|rmdir|select|stat|symlink|sysopen|umask|unlink|utime|break|caller|continue|die|do|dump|eval|evalbytes|exit|__FILE__|goto|last|__LINE__|next|__PACKAGE__|redo|return|sub|__SUB__|wantarray|caller|import|local|my|our|package|state|use|defined|formline|lock|prototype|reset|scalar|undef|alarm|exec|fork|getpgrp|getppid|getpriority|kill|pipe|qx|readpipe|setpgrp|setpriority|sleep|system|times|wait|waitpid|do|import|no|package|require|use|bless|dbmclose|dbmopen|package|ref|tie|tied|untie|use|accept|bind|connect|getpeername|getsockname|getsockopt|listen|recv|send|setsockopt|shutdown|socket|socketpair|msgctl|msgget|msgrcv|msgsnd|semctl|semget|semop|shmctl|shmget|shmread|shmwrite|endgrent|endhostent|endnetent|endpwent|getgrent|getgrgid|getgrnam|getlogin|getpwent|getpwnam|getpwuid|setgrent|setpwent|endprotoent|endservent|gethostbyaddr|gethostbyname|gethostent|getnetbyaddr|getnetbyname|getnetent|getprotobyname|getprotobynumber|getprotoent|getservbyname|getservbyport|getservent|sethostent|setnetent|setprotoent|setservent|gmtime|localtime|time|times|and|AUTOLOAD|BEGIN|CHECK|cmp|CORE|__DATA__|default|DESTROY|else|elseif|elsif|END|__END__|eq|for|foreach|ge|given|gt|if|INIT|le|lt|ne|not|or|UNITCHECK|unless|until|when|while|x|xor)\\>"},
+	{"pl", {0, 0 | SYN_BD}, "(\\$|@|%)([a-zA-Z][a-zA-Z0-9_]+)\\(", 1},
+	{"pl", {4}, "[\"']([^\"']|\\\\\")*[\"']"},
 
 	/* python */
 	{"py", {2}, "#.*$"},
